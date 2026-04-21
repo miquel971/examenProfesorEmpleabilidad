@@ -1,48 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>TEST EXAMEN EMPLEABILIDAD</title>
-
-<style>
-body {
-  font-family: Arial;
-  background:#f4f4f4;
-  padding:20px;
-}
-
-.container {
-  max-width:900px;
-  margin:auto;
-  background:white;
-  padding:20px;
-  border-radius:10px;
-}
-
-.question {
-  margin-bottom:20px;
-  padding:15px;
-  border:1px solid #ddd;
-  border-radius:8px;
-}
-
-button {
-  padding:10px;
-  margin-top:10px;
-  cursor:pointer;
-}
-
-.correcta { background:#e6ffe6; }
-.incorrecta { background:#ffe6e6; }
-
-.caso {
-  margin-top:40px;
-  padding:20px;
-  background:#fafafa;
-  border-top:3px solid #000;
-}
-</style>
-
+  <meta charset="UTF-8">
+  <title>TEST EXAMEN EMPLEABILIDAD</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -52,8 +13,8 @@ button {
 
 <form id="quizForm"></form>
 
-<button onclick="corregir()">Corregir</button>
-<button onclick="location.reload()">Reiniciar</button>
+<button type="button" onclick="corregir()">Corregir</button>
+<button type="button" onclick="location.reload()">Reiniciar</button>
 
 <h3 id="resultado"></h3>
 
@@ -195,96 +156,7 @@ El DUE permite unificar los trámites y el sistema CIRCE agiliza la creación de
 
 </div>
 
-<script>
-const preguntas = [
-["1. ¿Qué se entiende por empleabilidad en el contexto actual?",
-["A) La capacidad de adaptarse a los cambios del mercado laboral.",
-"B) La garantía de obtener un contrato indefinido por tener un título.",
-"C) El número total de horas trabajadas en la vida.",
-"D) La acumulación de títulos sin necesidad de práctica."],"A"],
-
-["2. ¿Qué factor define mejor al perfil emprendedor?",
-["A) La gestión exclusiva de patrimonios familiares.",
-"B) La iniciativa personal y la capacidad para asumir riesgos e innovar.",
-"C) El rechazo absoluto a cualquier tipo de formación.",
-"D) La búsqueda de un empleo estable por cuenta ajena."],"B"],
-
-["3. En un análisis DAFO, ¿cuál es una \"Amenaza\"?",
-["A) La falta de experiencia del equipo.",
-"B) Contar con una patente tecnológica.",
-"C) La entrada de nuevos competidores con precios más bajos.",
-"D) La alta motivación de los empleados."],"C"],
-
-["4. ¿Cuál es la función principal del DUE?",
-["A) Sustituir la contabilidad diaria.",
-"B) Registrar marcas a nivel internacional.",
-"C) Establecer el contrato de alquiler del local.",
-"D) Unificar en un solo formulario los datos para la constitución."],"D"],
-
-["5. ¿Qué representa el Umbral de Rentabilidad?",
-["A) El punto donde los ingresos igualan a los costes totales.",
-"B) La cantidad máxima que se puede fabricar.",
-"C) El nivel de impuestos a pagar al año.",
-"D) El precio más alto que el cliente está dispuesto a pagar."],"A"],
-
-["6. ¿Cuál es una \"Soft Skill\" fundamental en el sector IT?",
-["A) Conocimiento avanzado de SQL.",
-"B) Comunicación asertiva para perfiles no técnicos.",
-"C) Capacidad de escribir código en Python.",
-"D) Certificación oficial en redes CISCO."],"B"],
-
-["7. En el Marketing Mix, la \"Promoción\" abarca:",
-["A) El diseño físico del producto.",
-"B) La elección de canales logísticos.",
-"C) Acciones de comunicación para dar a conocer el producto.",
-"D) El cálculo de descuentos y formas de pago."],"C"],
-
-["8. Diferencia entre gasto e inversión:",
-["A) La inversión se recupera a largo plazo; el gasto se consume en el ejercicio.",
-"B) Los gastos siempre son mayores que las inversiones.",
-"C) Las inversiones solo las hacen las grandes empresas.",
-"D) Un gasto nunca es necesario para el negocio."],"A"],
-
-["9. La ventaja de la Sociedad Limitada (S.L.) es:",
-["A) No es necesario aportar capital inicial.",
-"B) La responsabilidad de los socios es ilimitada.",
-"C) La protección del patrimonio personal de los socios.",
-"D) La exención total del Impuesto de Sociedades."],"C"],
-
-["10. Impuesto que grava el beneficio de una sociedad:",
-["A) IVA.","B) Impuesto sobre Sociedades (IS).","C) IAE.","D) IBI."],"B"]
-];
-
-const form = document.getElementById("quizForm");
-
-preguntas.forEach((p,i)=>{
-let html = `<div class="question"><p>${p[0]}</p>`;
-p[1].forEach(op=>{
-html += `<label><input type="radio" name="q${i}" value="${op[0]}"> ${op}</label><br>`;
-});
-html += `</div>`;
-form.innerHTML += html;
-});
-
-function corregir(){
-let nota=0;
-preguntas.forEach((p,i)=>{
-let resp=document.querySelector(`input[name="q${i}"]:checked`);
-let bloque=form.children[i];
-
-if(resp && resp.value===p[2]){
-nota++;
-bloque.classList.add("correcta");
-}else{
-bloque.classList.add("incorrecta");
-bloque.innerHTML += `<p>Respuesta correcta: ${p[2]}</p>`;
-}
-});
-
-let final = (nota/preguntas.length*10).toFixed(2);
-document.getElementById("resultado").innerText = "Nota: " + final + " / 10";
-}
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

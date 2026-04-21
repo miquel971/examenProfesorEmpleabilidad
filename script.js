@@ -190,9 +190,9 @@ function renderizarQuiz() {
     const div = document.createElement("div");
     div.className = "question";
 
-    let html = `<p>${pregunta.q}</p>`;
+    let html = `<p>${pregunta[0]}</p>`;
 
-    pregunta.a.forEach((opcion) => {
+    pregunta[1].forEach((opcion) => {
       const letra = opcion.charAt(0);
       html += `
         <label class="option">
@@ -222,7 +222,7 @@ function corregir() {
 
     const seleccionada = document.querySelector(`input[name="q${index}"]:checked`);
 
-    if (seleccionada && seleccionada.value === pregunta.c) {
+    if (seleccionada && seleccionada.value === pregunta[2]) {
       aciertos++;
       bloque.classList.add("correcta");
     } else {
@@ -230,7 +230,7 @@ function corregir() {
 
       const p = document.createElement("p");
       p.className = "respuesta-correcta";
-      p.textContent = `Respuesta correcta: ${pregunta.c}`;
+      p.textContent = `Respuesta correcta: ${pregunta[2]}`;
       bloque.appendChild(p);
     }
   });
